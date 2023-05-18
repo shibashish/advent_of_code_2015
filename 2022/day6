@@ -1,0 +1,19 @@
+with open('input2.in.txt') as file:
+    data = [i for i in file.read()]
+
+def find_marker(type):
+
+    if type == 'packet':
+        size = 4
+    elif type == 'message':
+        size = 14
+    end = size - 1
+
+    for idx, x in enumerate(data[:-end]):
+        if len(set(data[idx:idx+size])) == size:
+            result = idx+size
+            break
+    return result
+
+print('Start of packet market at : {}'.format(find_marker('packet')))
+print('Start of message market at : {}'.format(find_marker('message')))
